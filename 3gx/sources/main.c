@@ -30,7 +30,7 @@ static bool is_paused = false;
 
 void handle_freeze(bool isTopScreen)
 {
-    if (host_is_just_pressed(BUTTON_START | BUTTON_SELECT))
+    if (host_is_just_pressed(BUTTON_R1 | BUTTON_L1))
     {
         is_paused = true;
     }
@@ -41,12 +41,12 @@ void handle_freeze(bool isTopScreen)
 
         u32 just_pressed = host_just_pressed();
 
-        if (just_pressed == BUTTON_SELECT)
+        if (just_pressed == BUTTON_L1)
         {
             break;
         }
 
-        if (just_pressed == BUTTON_A || just_pressed == BUTTON_START)
+        if (just_pressed == BUTTON_A || just_pressed == BUTTON_R1)
         {
             is_paused = false;
             break;
