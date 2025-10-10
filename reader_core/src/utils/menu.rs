@@ -1,7 +1,4 @@
-use crate::{pnp, pnp::Button, utils::CircularCounter};
-
-const VERSION: &str = env!("CARGO_PKG_VERSION");
-const GIT_HASH: &str = env!("GIT_HASH");
+use crate::{draw::draw_version, pnp, pnp::Button, utils::CircularCounter};
 
 pub trait MenuOptionValue: Copy {
     fn get_label(option: Self) -> &'static str;
@@ -50,11 +47,7 @@ impl<const MAX: usize, Value: MenuOptionValue> Menu<MAX, Value> {
     }
 
     fn cursor_str(&self, index: usize) -> &str {
-        if self.counter.value() == index {
-            ">"
-        } else {
-            " "
-        }
+        if self.counter.value() == index { ">" } else { " " }
     }
 
     pub fn draw(&self) {
@@ -62,7 +55,7 @@ impl<const MAX: usize, Value: MenuOptionValue> Menu<MAX, Value> {
             pnp::println!("{} {}", self.cursor_str(index + 1), option.label);
         }
         pnp::println!("");
-        pnp::println!("Ver {} {}", VERSION, GIT_HASH);
+        draw_version();
     }
 
     pub fn update_view(&mut self) {

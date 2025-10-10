@@ -7,6 +7,7 @@ use crate::pnp::{self, Button};
 const WHITE: u32 = 0xffffff;
 const GREEN: u32 = 0x003c00;
 const RED: u32 = 0x1f0000;
+pub const CRYSTAL_CYAN: u32 = 0x003c3c;
 
 fn get_iv_color(iv: u8) -> u32 {
     match iv {
@@ -42,11 +43,7 @@ pub fn draw_rng(reader: &Gen2Reader) {
 pub fn draw_pkx(pkx: &Pk2) {
     pnp::println!("Species: {}", pkx.species);
     pnp::println!(color = get_shiny_color(pkx.shiny), "Shiny: {}", pkx.shiny);
-    pnp::println!(
-        "HPower: {} {}",
-        pkx.hidden_power_type,
-        pkx.hidden_power_base
-    );
+    pnp::println!("HPower: {} {}", pkx.hidden_power_type, pkx.hidden_power_base);
     pnp::println!(color = get_iv_color(pkx.hp), "HP  DV: {}", pkx.hp);
     pnp::println!(color = get_iv_color(pkx.atk), "Atk DV: {}", pkx.atk);
     pnp::println!(color = get_iv_color(pkx.def), "Def DV: {}", pkx.def);
